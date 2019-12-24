@@ -7,6 +7,7 @@ import { ListPerfilRoutingModule } from './list-perfil-routing.module';
 import { PanelModule } from 'primeng/panel';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [ListPerfilComponent],
@@ -16,7 +17,8 @@ import { InputTextModule } from 'primeng/inputtext';
     PanelModule,
     ButtonModule,
     InputTextModule,
-    FormsModule
+    FormsModule,
+    TableModule
   ],
   exports: [ListPerfilComponent],
   providers: [PerfilService]
