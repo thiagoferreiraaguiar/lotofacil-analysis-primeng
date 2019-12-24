@@ -1,0 +1,23 @@
+<p-panel>
+  <p-header>
+    <div style="text-align: center; font-weight: bold;">{{titlePage}}</div>
+  </p-header>
+  <div class="ui-g">
+    <div class="ui-g-6">Sigla</div>
+    <div class="ui-g-6">Descrição</div>
+    <div class="ui-g-6">
+      <input id="txtSigla" type="text" pInputText size="60" [(ngModel)]="sigla" />
+    </div>
+    <div class="ui-g-6">
+      <input id="txtDescricao" type="text" pInputText size="60" [(ngModel)]="descricao" />
+    </div>
+  </div>
+  <p-footer>
+    <div style="text-align: right;">
+      <button pButton type="button" icon="pi pi-plus" label="Novo" class="ui-button-info"
+        style="margin-right: .25em"></button>
+      <button pButton type="button" icon="pi pi-search" label="Pesquisar" class="ui-button-info"></button>
+    </div>
+  </p-footer>
+</p-panel>
+<br>
