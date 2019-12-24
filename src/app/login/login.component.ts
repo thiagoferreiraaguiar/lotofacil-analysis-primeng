@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit {
   showMsgErro: boolean;
   disabledButton: boolean;
   labelButton: string;
-  iconButton: string;
 
   constructor(
     private loginService: LoginService,
@@ -33,7 +32,6 @@ export class LoginComponent implements OnInit {
 
     this.usuarioLogado = UsuarioLogado.getInstance();
     this.labelButton = "Logar";
-    this.iconButton = "";
     this.showMsgErro = false;
     this.disabledButton = false;
   }
@@ -41,7 +39,6 @@ export class LoginComponent implements OnInit {
   public efetuarLogin(form: NgForm): void {
     this.disabledButton = true;
     this.labelButton = "";
-    this.iconButton = "pi pi-spin pi-spinner";
     this.loginService.efetuarLogin(form.value).subscribe((currentUser: CurrentUser) => {
       if (currentUser != null) {
         this.adicionarUsuarioSessao(currentUser);
@@ -59,7 +56,6 @@ export class LoginComponent implements OnInit {
     this.disabledButton = false;
     this.showMsgErro = true;
     this.labelButton = "Logar";
-    this.iconButton = "";
     this.msgs.push({ severity: 'error', summary: 'Erro: ', detail: message });
     this.usuarioLogado.usuario = null;
     this.usuarioLogado.token = null;

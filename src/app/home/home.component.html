@@ -1,0 +1,7 @@
+<p-panel>
+  <p-header>
+    <div style="text-align: center; font-weight: bold;">{{titlePage}}</div>
+  </p-header>
+  <span *ngIf="qtdConcursosNaoVerificados == 0">Não existem jogos para serem verificados.</span>
+  <span *ngIf="qtdConcursosNaoVerificados > 0">Existem {{qtdConcursosNaoVerificados}} jogos para serem verificados.</span>
+</p-panel>
