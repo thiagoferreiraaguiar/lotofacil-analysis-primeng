@@ -1,0 +1,40 @@
+<form id="formulario" #f="ngForm" (ngSubmit)="efetuarLogin(f)">
+  <div class="p-grid">
+    <div class="p-col-4"></div>
+    <div class="p-col-4">
+      <p-card class="cardLogin" [style]="{width: '340px'}">
+        <div class="p-grid">
+          <div class="p-col">
+            <label for="txtLogin">Login</label>
+          </div>
+          <div class="p-col-11">
+            <input id="txtLogin" name="login" type="text" size="40" pInputText
+              [(ngModel)]="jwtAutenticationRequest.login">
+          </div>
+        </div>
+
+        <div class="p-grid">
+          <div class="p-col">
+            <label for="txtPassword">Password</label>
+          </div>
+          <div class="p-col-11">
+            <input id="txtPassword" name="senha" type="password" size="40" pPassword [feedback]=false
+              [(ngModel)]="jwtAutenticationRequest.senha" />
+          </div>
+        </div>
+
+        <div class="p-grid">
+          <div class="p-col">
+            <button pButton type="submit" [label]="labelButton" [icon]="iconButton" [disabled]="disabledButton"
+              style="width: -webkit-fill-available"></button>
+          </div>
+        </div>
+      </p-card>
+    </div>
+    <div class="p-col-4"></div>
+  </div>
+
+  <div *ngIf="showMsgErro" style="position: relative; top:110px">
+    <p-messages [(value)]="msgs"></p-messages>
+  </div>
+</form>
