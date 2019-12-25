@@ -30,6 +30,7 @@ export class FormPerfilComponent implements OnInit {
   showMessageError: boolean;
   isExclusao: boolean;
   hideTransitionOptions: string;
+  disabledButton: boolean;
 
   ngOnInit() {
     var idPerfil: number;
@@ -39,6 +40,7 @@ export class FormPerfilComponent implements OnInit {
     this.showMessageError = false;
     this.isExclusao = false;
     this.hideTransitionOptions = "0ms";
+    this.disabledButton = false;
 
     this.createForm();
 
@@ -72,20 +74,24 @@ export class FormPerfilComponent implements OnInit {
 
   public cadastrarPerfil(): void {
     this.msgs = [];
+    this.disabledButton = true;
     this.perfilService.cadastrarPerfilUsuario(this.perfilForm.value).subscribe((response: ResponseEntity) => {
       if (response.data != null) {
         this.showMessageError = false;
         this.perfilUsuarioFTO = response.data;
         this.messageService.add({ severity: 'success', detail: 'Perfil cadastrado com sucesso!' });
+        this.disabledButton = false;
       }
     }, err => {
       this.showMessageError = true;
       this.msgs.push({ severity: 'error', detail: 'Não foi possível cadastrar o perfil.' });
+      this.disabledButton = false;
     });
   }
 
   public excluirPerfilUsuario(idPerfilUsuario: number): void {
     this.msgs = [];
+    this.disabledButton = true;
     this.perfilService.excluirPerfilUsuario(idPerfilUsuario).subscribe((response: ResponseEntity) => {
       if (response.errors == null) {
         this.showMessageError = false;
@@ -95,6 +101,7 @@ export class FormPerfilComponent implements OnInit {
     }, err => {
       this.showMessageError = true;
       this.msgs.push({ severity: 'error', detail: 'Não foi possível excluir o perfil.' });
+      this.disabledButton = false;
     });
   }
 

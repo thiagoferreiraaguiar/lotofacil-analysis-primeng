@@ -41,11 +41,11 @@
                 <button pButton type="button" label="Novo" [routerLink]="pageForm"
                     *ngIf="isNumber(perfilUsuarioFTO.idPerfilUsuario)" style="margin-right: .25em"></button>
                 <button pButton type="button" label="Excluir" *ngIf="isNumber(perfilUsuarioFTO.idPerfilUsuario)"
-                    style="margin-right: .25em"
+                    style="margin-right: .25em" [disabled]="disabledButton"
                     (click)="excluirPerfilUsuario(perfilUsuarioFTO.idPerfilUsuario)"></button>
-                <button pButton type="submit" label="Atualizar" [disabled]="!perfilForm.valid"
+                <button pButton type="submit" label="Atualizar" [disabled]="!perfilForm.valid || disabledButton"
                     *ngIf="isNumber(perfilUsuarioFTO.idPerfilUsuario)"></button>
-                <button pButton type="submit" label="Cadastrar" [disabled]="!perfilForm.valid"
+                <button pButton type="submit" label="Cadastrar" [disabled]="!perfilForm.valid || disabledButton"
                     *ngIf="!isNumber(perfilUsuarioFTO.idPerfilUsuario)"></button>
             </div>
         </p-footer>
