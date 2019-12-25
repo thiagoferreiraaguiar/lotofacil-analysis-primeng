@@ -14,14 +14,20 @@
   </div>
   <p-footer>
     <div style="text-align: right;">
-      <button pButton type="button" icon="pi pi-plus" label="Novo" class="ui-button-info"
+      <button pButton type="button" icon="pi pi-plus" label="Novo" class="ui-button-info" [routerLink]="pageForm"
         style="margin-right: .25em"></button>
-      <button pButton type="button" icon="pi pi-search" label="Pesquisar" class="ui-button-info"></button>
+      <button pButton type="button" icon="pi pi-search" label="Pesquisar" class="ui-button-info"
+        (click)="pesquisarPerfilUsuario()"></button>
     </div>
   </p-footer>
 </p-panel>
 <br>
-<p-table [value]="listaPerfilUsuarioLTO" [paginator]="true" [rows]="10">
+
+<label *ngIf="totalResgistros > 0" for="">Exibindo {{firstPage}} até {{endPage}} de {{totalResgistros}} registros.</label>
+<label *ngIf="totalResgistros == 0" for="">Nenhum registro encontrado.</label>
+
+<p-table [value]="listaPerfilUsuarioLTO" selectionMode="single" dataKey="idPerfilUsuario"
+  (onRowSelect)="exibirDadosPerfil($event)" [paginator]="true" [rows]="qtdRows" (onPage)="paginate($event)">
   <ng-template pTemplate="header">
     <tr>
       <th>Sigla</th>
@@ -29,7 +35,7 @@
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-perfil>
-    <tr>
+    <tr [pSelectableRow]="perfil">
       <td>{{perfil.sigla}}</td>
       <td>{{perfil.descricao}}</td>
     </tr>
