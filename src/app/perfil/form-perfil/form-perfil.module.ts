@@ -8,6 +8,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 import { FormPerfilRoutingModule } from './form-perfil-routing.module';
 
@@ -23,9 +25,10 @@ import { FormPerfilRoutingModule } from './form-perfil-routing.module';
     InputTextModule,
     MessagesModule,
     MessageModule,
+    ToastModule,
     ReactiveFormsModule
   ],
   exports: [FormPerfilComponent],
-  providers: [PerfilService]
+  providers: [PerfilService, MessageService]
 })
 export class FormPerfilModule { }

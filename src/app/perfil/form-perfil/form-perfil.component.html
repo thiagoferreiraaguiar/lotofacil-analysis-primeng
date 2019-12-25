@@ -4,11 +4,12 @@
             <div style="text-align: center; font-weight: bold;">{{titlePage}}</div>
         </p-header>
         <div class="ui-g">
+            <input type="hidden" id="idPerfilUsuario" name="idPerfilUsuario" formControlName="idPerfilUsuario">
             <div class="ui-g-3">
-                <label for="sigla">Sigla</label>
+                <label for="sigla">* Sigla</label>
             </div>
             <div class="ui-g-9">
-                <label for="descricao">Descrição</label>
+                <label for="descricao">* Descrição</label>
             </div>
         </div>
         <div class="ui-g">
@@ -40,7 +41,8 @@
                 <button pButton type="button" label="Novo" *ngIf="isNumber(perfilUsuarioFTO.idPerfilUsuario)"
                     style="margin-right: .25em"></button>
                 <button pButton type="button" label="Excluir" *ngIf="isNumber(perfilUsuarioFTO.idPerfilUsuario)"
-                    style="margin-right: .25em"></button>
+                    style="margin-right: .25em"
+                    (click)="excluirPerfilUsuario(perfilUsuarioFTO.idPerfilUsuario)"></button>
                 <button pButton type="submit" label="Atualizar" [disabled]="!perfilForm.valid"
                     *ngIf="isNumber(perfilUsuarioFTO.idPerfilUsuario)"></button>
                 <button pButton type="submit" label="Cadastrar" [disabled]="!perfilForm.valid"
@@ -49,3 +51,7 @@
         </p-footer>
     </p-panel>
 </form>
+
+<p-toast></p-toast>
+
+<p-messages [(value)]="msgs"></p-messages>
