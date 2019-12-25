@@ -1,0 +1,51 @@
+<form [formGroup]="perfilForm" (ngSubmit)="cadastrarPerfil()">
+    <p-panel>
+        <p-header>
+            <div style="text-align: center; font-weight: bold;">{{titlePage}}</div>
+        </p-header>
+        <div class="ui-g">
+            <div class="ui-g-3">
+                <label for="sigla">Sigla</label>
+            </div>
+            <div class="ui-g-9">
+                <label for="descricao">Descrição</label>
+            </div>
+        </div>
+        <div class="ui-g">
+            <div class="ui-g-3 ui-fluid">
+                <input id="sigla" name="sigla" type="text" pInputText formControlName="sigla" />
+            </div>
+            <div class="ui-g-9 ui-fluid">
+                <input id="descricao" name="descricao" type="text" pInputText formControlName="descricao" />
+            </div>
+        </div>
+        <div class="ui-g">
+            <div class="ui-g-3">
+                <span style="color: red;"
+                    *ngIf="!perfilForm.controls['sigla'].valid && perfilForm.controls['sigla'].dirty"
+                    [innerHTML]="perfilForm.controls['sigla'].errors['required'] ? 'Campo obrigatório' : perfilForm.controls['sigla'].errors['minlength'] ? 'O número mínimo de caracteres é 5' : ''">
+                </span>
+            </div>
+            <div class="ui-g-9">
+                <span style="color: red;"
+                    *ngIf="!perfilForm.controls['descricao'].valid && perfilForm.controls['descricao'].dirty"
+                    [innerHTML]="perfilForm.controls['descricao'].errors['required'] ? 'Campo obrigatório' : ''">
+                </span>
+            </div>
+        </div>
+        <p-footer>
+            <div style="text-align: right;">
+                <button pButton type="button" label="Voltar" [routerLink]="pageList"
+                    style="margin-right: .25em"></button>
+                <button pButton type="button" label="Novo" *ngIf="isNumber(perfilUsuarioFTO.idPerfilUsuario)"
+                    style="margin-right: .25em"></button>
+                <button pButton type="button" label="Excluir" *ngIf="isNumber(perfilUsuarioFTO.idPerfilUsuario)"
+                    style="margin-right: .25em"></button>
+                <button pButton type="submit" label="Atualizar" [disabled]="!perfilForm.valid"
+                    *ngIf="isNumber(perfilUsuarioFTO.idPerfilUsuario)"></button>
+                <button pButton type="submit" label="Cadastrar" [disabled]="!perfilForm.valid"
+                    *ngIf="!isNumber(perfilUsuarioFTO.idPerfilUsuario)"></button>
+            </div>
+        </p-footer>
+    </p-panel>
+</form>

@@ -3,40 +3,43 @@
     <div style="text-align: center; font-weight: bold;">{{titlePage}}</div>
   </p-header>
   <div class="ui-g">
-    <div class="ui-g-6">Sigla</div>
-    <div class="ui-g-6">Descrição</div>
-    <div class="ui-g-6">
-      <input id="txtSigla" type="text" pInputText size="60" [(ngModel)]="sigla" />
+    <div class="ui-g-3">
+      <label for="sigla">Sigla</label>
     </div>
-    <div class="ui-g-6">
-      <input id="txtDescricao" type="text" pInputText size="60" [(ngModel)]="descricao" />
+    <div class="ui-g-9">
+      <label for="descricao">Descrição</label>
+    </div>
+    <div class="ui-g-3 ui-fluid">
+      <input id="sigla" name="sigla" type="text" pInputText [(ngModel)]="sigla" />
+    </div>
+    <div class="ui-g-9 ui-fluid">
+      <input id="descricao" name="descricao" type="text" pInputText [(ngModel)]="descricao" />
     </div>
   </div>
   <p-footer>
     <div style="text-align: right;">
-      <button pButton type="button" icon="pi pi-plus" label="Novo" class="ui-button-info" [routerLink]="pageForm"
-        style="margin-right: .25em"></button>
-      <button pButton type="button" icon="pi pi-search" label="Pesquisar" class="ui-button-info"
-        (click)="pesquisarPerfilUsuario()"></button>
+      <button pButton type="button" label="Novo" [routerLink]="pageForm" style="margin-right: .25em"></button>
+      <button pButton type="button" label="Pesquisar" (click)="pesquisarPerfilUsuario()"></button>
     </div>
   </p-footer>
 </p-panel>
 <br>
 
-<label *ngIf="totalResgistros > 0" for="">Exibindo {{firstPage}} até {{endPage}} de {{totalResgistros}} registros.</label>
+<label *ngIf="totalResgistros > 0" for="">Exibindo {{firstPage}} até {{endPage}} de {{totalResgistros}}
+  registros.</label>
 <label *ngIf="totalResgistros == 0" for="">Nenhum registro encontrado.</label>
 
 <p-table [value]="listaPerfilUsuarioLTO" selectionMode="single" dataKey="idPerfilUsuario"
   (onRowSelect)="exibirDadosPerfil($event)" [paginator]="true" [rows]="qtdRows" (onPage)="paginate($event)">
   <ng-template pTemplate="header">
     <tr>
-      <th>Sigla</th>
+      <th style="width: 30%;">Sigla</th>
       <th>Descrição</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-perfil>
     <tr [pSelectableRow]="perfil">
-      <td>{{perfil.sigla}}</td>
+      <td style="text-align: center;">{{perfil.sigla}}</td>
       <td>{{perfil.descricao}}</td>
     </tr>
   </ng-template>

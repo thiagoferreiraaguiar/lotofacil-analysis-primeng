@@ -28,7 +28,7 @@ export class MenuComponent implements OnInit {
   private addItensMenu(): void {
     this.items = [
       // { label: "", style: this.getImageLogo() },
-      { label: "Home", icon: "pi pi-home" },
+      { label: "Home", icon: "pi pi-home", routerLink: ['/home'] },
       {
         label: "Acesso", icon: "pi pi-user",
         items: [
