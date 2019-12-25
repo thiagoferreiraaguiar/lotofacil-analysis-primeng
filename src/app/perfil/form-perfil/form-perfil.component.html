@@ -38,8 +38,8 @@
             <div style="text-align: right;">
                 <button pButton type="button" label="Voltar" [routerLink]="pageList"
                     style="margin-right: .25em"></button>
-                <button pButton type="button" label="Novo" *ngIf="isNumber(perfilUsuarioFTO.idPerfilUsuario)"
-                    style="margin-right: .25em"></button>
+                <button pButton type="button" label="Novo" [routerLink]="pageForm"
+                    *ngIf="isNumber(perfilUsuarioFTO.idPerfilUsuario)" style="margin-right: .25em"></button>
                 <button pButton type="button" label="Excluir" *ngIf="isNumber(perfilUsuarioFTO.idPerfilUsuario)"
                     style="margin-right: .25em"
                     (click)="excluirPerfilUsuario(perfilUsuarioFTO.idPerfilUsuario)"></button>
@@ -52,6 +52,6 @@
     </p-panel>
 </form>
 
-<p-toast></p-toast>
+<p-toast [hideTransitionOptions]="hideTransitionOptions" (onClose)="redirectPageList()"></p-toast>
 
 <p-messages *ngIf="showMessageError" [(value)]="msgs"></p-messages>

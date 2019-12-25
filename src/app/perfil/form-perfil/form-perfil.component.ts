@@ -28,6 +28,8 @@ export class FormPerfilComponent implements OnInit {
   perfilUsuarioFTO: PerfilUsuarioFTO = new PerfilUsuarioFTO();
   msgs: Message[] = [];
   showMessageError: boolean;
+  isExclusao: boolean;
+  hideTransitionOptions: string;
 
   ngOnInit() {
     var idPerfil: number;
@@ -35,6 +37,8 @@ export class FormPerfilComponent implements OnInit {
     this.pageForm = "/form-perfil";
     this.pageList = "/list-perfil";
     this.showMessageError = false;
+    this.isExclusao = false;
+    this.hideTransitionOptions = "0ms";
 
     this.createForm();
 
@@ -85,8 +89,8 @@ export class FormPerfilComponent implements OnInit {
     this.perfilService.excluirPerfilUsuario(idPerfilUsuario).subscribe((response: ResponseEntity) => {
       if (response.errors == null) {
         this.showMessageError = false;
+        this.isExclusao = true;
         this.messageService.add({ severity: 'success', detail: 'Perfil excluido com sucesso!' });
-        this.router.navigate([this.pageList]);
       }
     }, err => {
       this.showMessageError = true;
@@ -96,6 +100,13 @@ export class FormPerfilComponent implements OnInit {
 
   public isNumber(idPerfil: number): Boolean {
     return !isNaN(idPerfil);
+  }
+
+  public redirectPageList() {
+    if (this.isExclusao) {
+      this.hideTransitionOptions = "3000ms";
+      this.router.navigate([this.pageList]);
+    }
   }
 
 }
