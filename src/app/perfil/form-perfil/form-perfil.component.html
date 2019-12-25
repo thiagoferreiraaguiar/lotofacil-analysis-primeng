@@ -52,6 +52,6 @@
     </p-panel>
 </form>
 
-<p-toast [hideTransitionOptions]="hideTransitionOptions" (onClose)="redirectPageList()"></p-toast>
+<p-toast (onClose)="redirectPageList()"></p-toast>
 
 <p-messages *ngIf="showMessageError" [(value)]="msgs"></p-messages>

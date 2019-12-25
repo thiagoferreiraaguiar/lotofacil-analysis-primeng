@@ -39,7 +39,6 @@ export class FormPerfilComponent implements OnInit {
     this.pageList = "/list-perfil";
     this.showMessageError = false;
     this.isExclusao = false;
-    this.hideTransitionOptions = "0ms";
     this.disabledButton = false;
 
     this.createForm();
@@ -111,7 +110,6 @@ export class FormPerfilComponent implements OnInit {
 
   public redirectPageList() {
     if (this.isExclusao) {
-      this.hideTransitionOptions = "3000ms";
       this.router.navigate([this.pageList]);
     }
   }
