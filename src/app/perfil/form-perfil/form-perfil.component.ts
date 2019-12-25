@@ -27,12 +27,14 @@ export class FormPerfilComponent implements OnInit {
   pageList: string;
   perfilUsuarioFTO: PerfilUsuarioFTO = new PerfilUsuarioFTO();
   msgs: Message[] = [];
+  showMessageError: boolean;
 
   ngOnInit() {
     var idPerfil: number;
     this.titlePage = "Perfil";
     this.pageForm = "/form-perfil";
     this.pageList = "/list-perfil";
+    this.showMessageError = false;
 
     this.createForm();
 
@@ -68,10 +70,12 @@ export class FormPerfilComponent implements OnInit {
     this.msgs = [];
     this.perfilService.cadastrarPerfilUsuario(this.perfilForm.value).subscribe((response: ResponseEntity) => {
       if (response.data != null) {
+        this.showMessageError = false;
         this.perfilUsuarioFTO = response.data;
         this.messageService.add({ severity: 'success', detail: 'Perfil cadastrado com sucesso!' });
       }
     }, err => {
+      this.showMessageError = true;
       this.msgs.push({ severity: 'error', detail: 'Não foi possível cadastrar o perfil.' });
     });
   }
@@ -80,9 +84,12 @@ export class FormPerfilComponent implements OnInit {
     this.msgs = [];
     this.perfilService.excluirPerfilUsuario(idPerfilUsuario).subscribe((response: ResponseEntity) => {
       if (response.errors == null) {
+        this.showMessageError = false;
+        this.messageService.add({ severity: 'success', detail: 'Perfil excluido com sucesso!' });
         this.router.navigate([this.pageList]);
       }
     }, err => {
+      this.showMessageError = true;
       this.msgs.push({ severity: 'error', detail: 'Não foi possível excluir o perfil.' });
     });
   }

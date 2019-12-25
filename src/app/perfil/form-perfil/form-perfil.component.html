@@ -54,4 +54,4 @@
 
 <p-toast></p-toast>
 
-<p-messages [(value)]="msgs"></p-messages>
+<p-messages *ngIf="showMessageError" [(value)]="msgs"></p-messages>
