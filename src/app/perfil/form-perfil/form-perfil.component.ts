@@ -29,7 +29,6 @@ export class FormPerfilComponent implements OnInit {
   msgs: Message[] = [];
   showMessageError: boolean;
   isExclusao: boolean;
-  hideTransitionOptions: string;
   disabledButton: boolean;
 
   ngOnInit() {
