@@ -38,7 +38,7 @@
             <div style="text-align: right;">
                 <button pButton type="button" label="Voltar" [routerLink]="pageList"
                     style="margin-right: .25em"></button>
-                <button pButton type="button" label="Novo" [routerLink]="pageForm"
+                <button pButton type="button" label="Novo" (click)="novoPerfil()"
                     *ngIf="isNumber(perfilUsuarioFTO.idPerfilUsuario)" style="margin-right: .25em"></button>
                 <button pButton type="button" label="Excluir" *ngIf="isNumber(perfilUsuarioFTO.idPerfilUsuario)"
                     style="margin-right: .25em" [disabled]="disabledButton"

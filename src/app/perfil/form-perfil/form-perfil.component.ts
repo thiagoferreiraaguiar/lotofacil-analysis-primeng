@@ -113,4 +113,9 @@ export class FormPerfilComponent implements OnInit {
     }
   }
 
+  public novoPerfil(): void {
+    this.perfilUsuarioFTO = new PerfilUsuarioFTO();
+    this.router.navigate([this.pageForm]);
+  }
+
 }
