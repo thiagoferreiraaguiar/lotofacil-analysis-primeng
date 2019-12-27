@@ -1,1 +1,1 @@
-<p-menubar [model]="items"></p-menubar>
+<p-menubar *ngIf="usuarioLogado.isLogado()" [model]="items"></p-menubar>

@@ -16,11 +16,11 @@ export class MenuComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.addItensMenu();
     this.usuarioLogado = UsuarioLogado.getInstance();
     this.usuarioLogado.exibeMenu.subscribe((show: boolean) => {
       if (show) {
         this.loginUsuario = this.usuarioLogado.usuario.login;
-        this.addItensMenu();
       }
     });
   }
