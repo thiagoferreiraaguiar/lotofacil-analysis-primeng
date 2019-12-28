@@ -1,0 +1,66 @@
+<p-panel>
+    <p-header>
+        <div style="text-align: center; font-weight: bold;">{{titlePage}}</div>
+    </p-header>
+    <div class="ui-g">
+        <div class="ui-g-4">
+            <label for="sigla">Nome</label>
+        </div>
+        <div class="ui-g-3">
+            <label for="sigla">Login</label>
+        </div>
+        <div class="ui-g-4">
+            <label for="sigla">Perfil</label>
+        </div>
+        <div class="ui-g-1">
+            <label for="sigla">Ativo</label>
+        </div>
+        <div class="ui-g-4 ui-fluid">
+            <input id="nome" name="nome" type="text" pInputText [(ngModel)]="nome" />
+        </div>
+        <div class="ui-g-3 ui-fluid">
+            <input id="login" name="login" type="text" pInputText [(ngModel)]="login" />
+        </div>
+        <div class="ui-g-4 ui-fluid">
+            <p-dropdown [options]="listaPerfilUsuarioLTO" placeholder="Selecione" [(ngModel)]="perfilSelecionado"
+                optionLabel="descricao"></p-dropdown>
+        </div>
+        <div class="ui-g-1 ui-fluid">
+            <p-checkbox [(ngModel)]="ativo" binary="true"></p-checkbox>
+        </div>
+    </div>
+    <p-footer>
+        <div style="text-align: right;">
+            <button pButton type="button" label="Novo" [routerLink]="pageForm" style="margin-right: .25em"></button>
+            <button pButton type="button" label="Pesquisar" (click)="pesquisarUsuario()"></button>
+        </div>
+    </p-footer>
+</p-panel>
+
+<br>
+
+<label *ngIf="totalResgistros > 0" for="">Exibindo {{firstPage}} até {{endPage}} de {{totalResgistros}}
+    registros.</label>
+<label *ngIf="totalResgistros == 0" for="">Nenhum registro encontrado.</label>
+
+<p-table [value]="listaUsuarioLTO" selectionMode="single" dataKey="idUsuario" (onRowSelect)="exibirDadosUsuario($event)"
+    [paginator]="true" [rows]="qtdRows" (onPage)="paginate($event)">
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="width: 30%;">Nome</th>
+            <th style="width: 15%;">Login</th>
+            <th style="width: 20%;">Perfil</th>
+            <th style="width: 25%;">Email</th>
+            <th style="width: 10%;">Status</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-usuario>
+        <tr [pSelectableRow]="usuario">
+            <td style="text-align: center;">{{usuario.nome}}</td>
+            <td style="text-align: center;">{{usuario.login}}</td>
+            <td style="text-align: center;">{{usuario.perfilUsuarioLTO.descricao}}</td>
+            <td style="text-align: center;">{{usuario.email}}</td>
+            <td style="text-align: center;">{{usuario.ativo ? 'Ativo' : 'Inativo'}}</td>
+        </tr>
+    </ng-template>
+</p-table>
