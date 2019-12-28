@@ -21,43 +21,44 @@ export class FormPerfilComponent implements OnInit {
     private messageService: MessageService
   ) { }
 
-  perfilForm: FormGroup;
+  perfilFormGroup: FormGroup;
   titlePage: string;
   pageForm: string;
   pageList: string;
-  perfilUsuarioFTO: PerfilUsuarioFTO = new PerfilUsuarioFTO();
   msgs: Message[] = [];
   showMessageError: boolean;
   isExclusao: boolean;
   disabledButton: boolean;
+  isAtualizacao: boolean;
+  idPerfil: number;
 
   ngOnInit() {
-    var idPerfil: number;
     this.titlePage = "Perfil";
     this.pageForm = "/form-perfil";
     this.pageList = "/list-perfil";
     this.showMessageError = false;
     this.isExclusao = false;
+    this.isAtualizacao = false;
     this.disabledButton = false;
+    this.idPerfil = null;
 
     this.createForm();
 
     // pega o id do perfil 
     this.activatedRoute.params.subscribe(params => {
-      idPerfil = + params['id'];
+      this.idPerfil = + params['id'];
     });
 
     // pega os dados do perfil
-    if (!isNaN(idPerfil)) {
-      this.perfilService.getPerfilUsuario(idPerfil).subscribe((response: ResponseEntity) => {
-        this.perfilUsuarioFTO = response.data;
-        this.popularCamposFormulario(this.perfilUsuarioFTO);
+    if (!isNaN(this.idPerfil)) {
+      this.perfilService.getPerfilUsuario(this.idPerfil).subscribe((response: ResponseEntity) => {
+        this.popularCamposFormulario(response.data);
       });
     }
   }
 
   private createForm() {
-    this.perfilForm = new FormGroup({
+    this.perfilFormGroup = new FormGroup({
       idPerfilUsuario: new FormControl(),
       sigla: new FormControl('', [Validators.required, Validators.minLength(5)]),
       descricao: new FormControl('', Validators.required)
@@ -67,11 +68,10 @@ export class FormPerfilComponent implements OnInit {
   public cadastrarPerfil(): void {
     this.msgs = [];
     this.disabledButton = true;
-    this.perfilService.cadastrarPerfilUsuario(this.perfilForm.value).subscribe((response: ResponseEntity) => {
+    this.perfilService.cadastrarPerfilUsuario(this.perfilFormGroup.value).subscribe((response: ResponseEntity) => {
       if (response.data != null) {
         this.showMessageError = false;
-        this.perfilUsuarioFTO = response.data;
-        this.popularCamposFormulario(this.perfilUsuarioFTO);
+        this.popularCamposFormulario(response.data);
         this.messageService.add({ severity: 'success', detail: 'Perfil cadastrado com sucesso!' });
         this.disabledButton = false;
       }
@@ -110,13 +110,17 @@ export class FormPerfilComponent implements OnInit {
   }
 
   public novoPerfil(): void {
-    this.perfilUsuarioFTO = new PerfilUsuarioFTO();
-    this.perfilForm.reset();
+    this.idPerfil = null;
+    this.isAtualizacao = false;
+    this.perfilFormGroup.reset();
     this.router.navigate([this.pageForm]);
   }
 
   private popularCamposFormulario(perfilUsuarioFTO: PerfilUsuarioFTO) {
-    this.perfilForm.setValue({
+    this.idPerfil = perfilUsuarioFTO.idPerfilUsuario;
+    this.isAtualizacao = true;
+
+    this.perfilFormGroup.setValue({
       idPerfilUsuario: perfilUsuarioFTO.idPerfilUsuario,
       sigla: perfilUsuarioFTO.sigla,
       descricao: perfilUsuarioFTO.descricao
