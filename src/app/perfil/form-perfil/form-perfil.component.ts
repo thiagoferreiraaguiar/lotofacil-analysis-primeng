@@ -99,10 +99,6 @@ export class FormPerfilComponent implements OnInit {
     });
   }
 
-  public isNumber(idPerfil: number): Boolean {
-    return !isNaN(idPerfil);
-  }
-
   public redirectPageList() {
     if (this.isExclusao) {
       this.router.navigate([this.pageList]);
