@@ -60,7 +60,7 @@ export class FormPerfilComponent implements OnInit {
   private createForm() {
     this.perfilFormGroup = new FormGroup({
       idPerfilUsuario: new FormControl(),
-      sigla: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      sigla: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(10)]),
       descricao: new FormControl('', Validators.required)
     });
   }

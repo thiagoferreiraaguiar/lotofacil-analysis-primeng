@@ -25,13 +25,17 @@
             <div class="ui-g-3">
                 <span style="color: red;"
                     *ngIf="!perfilFormGroup.controls['sigla'].valid && perfilFormGroup.controls['sigla'].dirty"
-                    [innerHTML]="perfilFormGroup.controls['sigla'].errors['required'] ? 'Campo obrigatório' : perfilFormGroup.controls['sigla'].errors['minlength'] ? 'O número mínimo de caracteres é 5' : ''">
+                    [innerHTML]="perfilFormGroup.controls['sigla'].errors['required'] ? 'Campo obrigatório' 
+                        : perfilFormGroup.controls['sigla'].errors['minlength'] ? 'O número mínimo de caracteres é 5' 
+                        : perfilFormGroup.controls['sigla'].errors['maxlength'] ? 'O número máximo de caracteres é 10' 
+                        : ''">
                 </span>
             </div>
             <div class="ui-g-9">
                 <span style="color: red;"
                     *ngIf="!perfilFormGroup.controls['descricao'].valid && perfilFormGroup.controls['descricao'].dirty"
-                    [innerHTML]="perfilFormGroup.controls['descricao'].errors['required'] ? 'Campo obrigatório' : ''">
+                    [innerHTML]="perfilFormGroup.controls['descricao'].errors['required'] ? 'Campo obrigatório' 
+                        : ''">
                 </span>
             </div>
         </div>
