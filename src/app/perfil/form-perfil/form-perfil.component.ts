@@ -51,13 +51,7 @@ export class FormPerfilComponent implements OnInit {
     if (!isNaN(idPerfil)) {
       this.perfilService.getPerfilUsuario(idPerfil).subscribe((response: ResponseEntity) => {
         this.perfilUsuarioFTO = response.data;
-
-        // preenche os campos do formulario
-        this.perfilForm.setValue({
-          idPerfilUsuario: this.perfilUsuarioFTO.idPerfilUsuario,
-          sigla: this.perfilUsuarioFTO.sigla,
-          descricao: this.perfilUsuarioFTO.descricao
-        })
+        this.popularCamposFormulario(this.perfilUsuarioFTO);
       });
     }
   }
@@ -77,6 +71,7 @@ export class FormPerfilComponent implements OnInit {
       if (response.data != null) {
         this.showMessageError = false;
         this.perfilUsuarioFTO = response.data;
+        this.popularCamposFormulario(this.perfilUsuarioFTO);
         this.messageService.add({ severity: 'success', detail: 'Perfil cadastrado com sucesso!' });
         this.disabledButton = false;
       }
@@ -100,6 +95,7 @@ export class FormPerfilComponent implements OnInit {
       this.showMessageError = true;
       this.msgs.push({ severity: 'error', detail: 'Não foi possível excluir o perfil.' });
       this.disabledButton = false;
+      this.isExclusao = false;
     });
   }
 
@@ -115,7 +111,16 @@ export class FormPerfilComponent implements OnInit {
 
   public novoPerfil(): void {
     this.perfilUsuarioFTO = new PerfilUsuarioFTO();
+    this.perfilForm.reset();
     this.router.navigate([this.pageForm]);
+  }
+
+  private popularCamposFormulario(perfilUsuarioFTO: PerfilUsuarioFTO) {
+    this.perfilForm.setValue({
+      idPerfilUsuario: perfilUsuarioFTO.idPerfilUsuario,
+      sigla: perfilUsuarioFTO.sigla,
+      descricao: perfilUsuarioFTO.descricao
+    })
   }
 
 }
