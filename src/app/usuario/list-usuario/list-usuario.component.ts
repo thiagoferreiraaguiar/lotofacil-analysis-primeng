@@ -56,7 +56,10 @@ export class ListUsuarioComponent implements OnInit {
   }
 
   public pesquisarUsuario() {
-
+    this.usuarioService.pesquisarUsuario(this.nome, this.login, this.perfilSelecionado.idPerfilUsuario, this.ativo).subscribe((response: ResponseEntity) => {
+      this.listaUsuarioLTO = response.data;
+      this.textPaginacao = this.util.showLabelPaginate(0, this.listaUsuarioLTO.length, this.qtdRows);
+    });
   }
 
   public exibirDadosUsuario(event: any) {
