@@ -1,3 +1,4 @@
+import { Util } from './../../util/util';
 import { UsuarioLTO } from './../../lto/usuario-lto';
 import { PerfilUsuarioLTO } from './../../lto/perfil-usuario-lto';
 import { ResponseEntity } from './../../model/response-entity';
@@ -31,16 +32,16 @@ export class ListUsuarioComponent implements OnInit {
   listaUsuarioLTO: UsuarioLTO[] = [];
 
   // paginacao
-  totalResgistros: number;
-  firstPage: number;
-  endPage: number;
+  util: Util;
   qtdRows: number;
+  textPaginacao: string;
 
   ngOnInit() {
     this.titlePage = "Usuário";
     this.ativo = true;
     this.pageForm = "/form-usuario";
     this.qtdRows = 10;
+    this.util = new Util();
 
     //preenche combo perfil
     this.perfilService.listarTodos().subscribe((response: ResponseEntity) => {
@@ -50,8 +51,7 @@ export class ListUsuarioComponent implements OnInit {
     // listar todos usuarios
     this.usuarioService.listarTodos().subscribe((response: ResponseEntity) => {
       this.listaUsuarioLTO = response.data;
-      this.totalResgistros = this.listaPerfilUsuarioLTO.length;
-      this.showLabelPaginate(0);
+      this.textPaginacao = this.util.showLabelPaginate(0, this.listaUsuarioLTO.length, this.qtdRows);
     });
   }
 
@@ -64,19 +64,7 @@ export class ListUsuarioComponent implements OnInit {
   }
 
   public paginate(event: any) {
-    this.showLabelPaginate(event.first);
-  }
-
-  private showLabelPaginate(page: number) {
-    var paginaAtual = page + 1;
-    this.firstPage = (this.qtdRows * page) + 1;
-
-    var quociente = (this.totalResgistros / this.qtdRows);
-    if (parseInt(quociente.toString()) > paginaAtual) {
-      this.endPage = this.qtdRows * paginaAtual;
-    } else {
-      this.endPage = this.totalResgistros;
-    }
+    this.textPaginacao = this.util.showLabelPaginate(event.first, this.listaUsuarioLTO.length, this.qtdRows);
   }
 
 }

@@ -26,9 +26,7 @@
 
 <br>
 
-<label *ngIf="totalResgistros > 0" for="">Exibindo {{firstPage}} até {{endPage}} de {{totalResgistros}}
-  registros.</label>
-<label *ngIf="totalResgistros == 0" for="">Nenhum registro encontrado.</label>
+<label>{{textPaginacao}}</label>
 
 <p-table [value]="listaPerfilUsuarioLTO" selectionMode="single" dataKey="idPerfilUsuario"
   (onRowSelect)="exibirDadosPerfil($event)" [paginator]="true" [rows]="qtdRows" (onPage)="paginate($event)">

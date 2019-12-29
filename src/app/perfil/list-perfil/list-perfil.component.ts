@@ -1,3 +1,4 @@
+import { Util } from './../../util/util';
 import { ResponseEntity } from './../../model/response-entity';
 import { PerfilService } from './../perfil.service';
 import { Router } from '@angular/router';
@@ -20,34 +21,32 @@ export class ListPerfilComponent implements OnInit {
 
   sigla: string;
   descricao: string;
-  
+
   pageForm: string;
   listaPerfilUsuarioLTO: PerfilUsuarioLTO[] = [];
 
   // paginacao
-  totalResgistros: number;
-  firstPage: number;
-  endPage: number;
+  util: Util;
   qtdRows: number;
+  textPaginacao: string;
 
   ngOnInit() {
     this.titlePage = "Perfil";
     this.pageForm = "/form-perfil";
     this.qtdRows = 10;
+    this.util = new Util();
 
     // listar todos perfils
     this.perfilService.listarTodos().subscribe((response: ResponseEntity) => {
       this.listaPerfilUsuarioLTO = response.data;
-      this.totalResgistros = this.listaPerfilUsuarioLTO.length;
-      this.showLabelPaginate(0);
+      this.textPaginacao = this.util.showLabelPaginate(0, this.listaPerfilUsuarioLTO.length, this.qtdRows);
     });
   }
 
   public pesquisarPerfilUsuario() {
     this.perfilService.pesquisarPerfilUsuario(this.sigla, this.descricao).subscribe((response: ResponseEntity) => {
       this.listaPerfilUsuarioLTO = response.data;
-      this.totalResgistros = this.listaPerfilUsuarioLTO.length;
-      this.showLabelPaginate(0);
+      this.textPaginacao = this.util.showLabelPaginate(0, this.listaPerfilUsuarioLTO.length, this.qtdRows);
     });
   }
 
@@ -56,19 +55,7 @@ export class ListPerfilComponent implements OnInit {
   }
 
   public paginate(event: any) {
-    this.showLabelPaginate(event.first);
-  }
-
-  private showLabelPaginate(page: number) {
-    var paginaAtual = page + 1;
-    this.firstPage = (this.qtdRows * page) + 1;
-
-    var quociente = (this.totalResgistros / this.qtdRows);
-    if (parseInt(quociente.toString()) > paginaAtual) {
-      this.endPage = this.qtdRows * paginaAtual;
-    } else {
-      this.endPage = this.totalResgistros;
-    }
+    this.textPaginacao = this.util.showLabelPaginate(event.first, this.listaPerfilUsuarioLTO.length, this.qtdRows);
   }
 
 }
