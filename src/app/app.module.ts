@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenuComponent } from './menu/menu.component';
 import { MenubarModule } from 'primeng/menubar';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SplitButtonModule } from 'primeng/splitbutton';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     BrowserAnimationsModule,
     MenubarModule,
     HttpClientModule,
+    SplitButtonModule,
     FormsModule,
     ReactiveFormsModule
   ],

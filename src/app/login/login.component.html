@@ -4,39 +4,42 @@
     <div class="ui-g-8">
       <p-card class="cardLogin">
         <div class="ui-g">
-          <div class="ui-g-12">
+          <div class="ui-g-4">
+            <br /><br /><br />
             <div style="text-align: center">
-              <img src="../../assets/img/logo.png" alt="Logo" height="30" width="30">
+              <img src="../../assets/img/logo.png" alt="Logo" height="130" width="130">
             </div>
           </div>
-          <div class="ui-g-12">
-            <span>
-              Bem-vindo, use o formulário para acessar o sistema.
-            </span>
-          </div>
-          <div class="ui-g-12">
-            <label for="login">Login</label>
-          </div>
-          <div class="ui-g-12 ui-fluid">
-            <div class="ui-inputgroup">
-              <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-              <input id="login" name="login" type="text" pInputText [(ngModel)]="jwtAutenticationRequest.login">
+          <div class="ui-g-8 ui-g-nopad">
+            <div class="ui-g-12">
+              <span>
+                Bem-vindo, use o formulário para acessar o sistema.
+              </span>
             </div>
-          </div>
-          <div class="ui-g-12">
-            <label for="senha">Password</label>
-          </div>
-          <div class="ui-g-12 ui-fluid">
-            <div class="ui-inputgroup">
-              <span class="ui-inputgroup-addon"><i class="pi pi-lock" style="line-height: 1.25;"></i></span>
-              <input id="senha" name="senha" type="password" pPassword [feedback]=false
-                [(ngModel)]="jwtAutenticationRequest.senha" />
+            <div class="ui-g-12">
+              <label for="login">Login</label>
             </div>
-          </div>
-          <div class="ui-g-12 ui-fluid">
-            <button pButton type="submit" [label]="labelButton" [disabled]="disabledButton">
-              <i *ngIf="disabledButton" class="pi pi-spin pi-spinner" style="font-size: 1.5em"></i>
-            </button>
+            <div class="ui-g-12 ui-fluid">
+              <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+                <input id="login" name="login" type="text" pInputText [(ngModel)]="jwtAutenticationRequest.login">
+              </div>
+            </div>
+            <div class="ui-g-12">
+              <label for="senha">Password</label>
+            </div>
+            <div class="ui-g-12 ui-fluid">
+              <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="pi pi-lock" style="line-height: 1.25;"></i></span>
+                <input id="senha" name="senha" type="password" pPassword [feedback]=false
+                  [(ngModel)]="jwtAutenticationRequest.senha" />
+              </div>
+            </div>
+            <div class="ui-g-12 ui-fluid">
+              <button pButton type="submit" [label]="labelButton" [disabled]="disabledButton">
+                <i *ngIf="disabledButton" class="pi pi-spin pi-spinner" style="font-size: 1.5em"></i>
+              </button>
+            </div>
           </div>
         </div>
       </p-card>

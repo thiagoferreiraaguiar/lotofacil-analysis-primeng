@@ -1,1 +1,5 @@
-<p-menubar *ngIf="usuarioLogado.isLogado()" [model]="items"></p-menubar>
+<p-menubar *ngIf="usuarioLogado.isLogado()" [model]="items">
+    <div>
+        <p-splitButton [label]="loginUsuario" styleClass="ui-button-secondary" [model]="itemsUsuario"></p-splitButton>
+    </div>
+</p-menubar>

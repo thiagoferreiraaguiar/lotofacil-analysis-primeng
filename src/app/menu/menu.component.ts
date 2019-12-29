@@ -10,6 +10,7 @@ import { MenuItem } from 'primeng/api';
 export class MenuComponent implements OnInit {
 
   items: MenuItem[];
+  itemsUsuario: MenuItem[];
   loginUsuario: string;
   usuarioLogado: UsuarioLogado;
 
@@ -17,6 +18,7 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
     this.addItensMenu();
+    this.addItensUsuario();
     this.usuarioLogado = UsuarioLogado.getInstance();
     this.usuarioLogado.exibeMenu.subscribe((show: boolean) => {
       if (show) {
@@ -34,7 +36,6 @@ export class MenuComponent implements OnInit {
         items: [
           { label: "Perfil", routerLink: ['/list-perfil'] },
           { label: "Usuário", routerLink: ['/list-usuario'] },
-          { label: "Configuração" }
         ]
       },
       {
@@ -44,6 +45,13 @@ export class MenuComponent implements OnInit {
           { label: "Resultado" }
         ]
       }
+    ];
+  }
+
+  private addItensUsuario() {
+    this.itemsUsuario = [
+      { label: 'Configurações', icon: 'pi pi-cog', routerLink: '' },
+      { label: 'Sair', icon: 'pi pi-times', routerLink: '' }
     ];
   }
 
