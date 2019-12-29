@@ -25,7 +25,8 @@ export class ListUsuarioComponent implements OnInit {
   nome: string;
   login: string;
   perfilSelecionado: PerfilUsuarioLTO;
-  ativo: boolean;
+  ativo: any;
+  labelStatus: string;
 
   pageForm: string;
   listaPerfilUsuarioLTO: PerfilUsuarioLTO[] = [];
@@ -39,6 +40,7 @@ export class ListUsuarioComponent implements OnInit {
   ngOnInit() {
     this.titlePage = "Usuário";
     this.ativo = true;
+    this.labelStatus = "Ativo";
     this.pageForm = "/form-usuario";
     this.qtdRows = 10;
     this.util = new Util();
@@ -68,6 +70,16 @@ export class ListUsuarioComponent implements OnInit {
 
   public paginate(event: any) {
     this.textPaginacao = this.util.showLabelPaginate(event.first, this.listaUsuarioLTO.length, this.qtdRows);
+  }
+
+  public onChangeStatus() {
+    if (this.ativo == null) {
+      this.labelStatus = "Todos";
+    } else if (this.ativo) {
+      this.labelStatus = "Ativo";
+    } else {
+      this.labelStatus = "Inativo";
+    }
   }
 
 }

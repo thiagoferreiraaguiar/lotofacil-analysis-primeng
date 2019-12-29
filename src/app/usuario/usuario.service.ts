@@ -14,12 +14,12 @@ export class UsuarioService {
     return this.http.get(this.url + "/api/usuario/");
   }
 
-  public pesquisarUsuario(nome: string, login: string, idPerfilUsuario: number, ativo: boolean) {
+  public pesquisarUsuario(nome: string, login: string, idPerfilUsuario: number, ativo: any) {
     const params = new HttpParams()
       .set('nome', nome)
       .set('login', login)
       .set('idPerfilUsuario', idPerfilUsuario.toString())
-      .set('ativo', (ativo ? "true" : "false"));
+      .set('ativo', (ativo == null ? '' : (ativo ? 'true' : 'false')));
 
     return this.http.get(this.url + '/api/usuario/pesquisarUsuario', { params });
   }

@@ -13,7 +13,7 @@
             <label for="sigla">Perfil</label>
         </div>
         <div class="ui-g-1">
-            <label for="sigla">Ativo</label>
+            <label for="sigla">Status</label>
         </div>
         <div class="ui-g-4 ui-fluid">
             <input id="nome" name="nome" type="text" pInputText [(ngModel)]="nome" />
@@ -26,7 +26,7 @@
                 optionLabel="descricao"></p-dropdown>
         </div>
         <div class="ui-g-1 ui-fluid">
-            <p-checkbox [(ngModel)]="ativo" binary="true"></p-checkbox>
+            <p-triStateCheckbox [(ngModel)]="ativo" label="{{labelStatus}}" (onChange)="onChangeStatus()"></p-triStateCheckbox>
         </div>
     </div>
     <p-footer>
