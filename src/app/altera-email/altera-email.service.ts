@@ -15,6 +15,6 @@ export class AlteraEmailService {
       .set('email', email)
       .set('login', login);
 
-    return null;
+    return this.http.get(this.url + '/api/usuario/atualizarEmailByLogin', { params });
   }
 }
