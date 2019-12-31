@@ -8,7 +8,8 @@ const routes: Routes = [
   { path: 'list-perfil', loadChildren: () => import('src/app/perfil/list-perfil/list-perfil.module').then(m => m.ListPerfilModule), canActivate: [AuthGuard] },
   { path: 'form-perfil', loadChildren: () => import('src/app/perfil/form-perfil/form-perfil.module').then(m => m.FormPerfilModule), canActivate: [AuthGuard] },
   { path: 'form-perfil/:id', loadChildren: () => import('src/app/perfil/form-perfil/form-perfil.module').then(m => m.FormPerfilModule), canActivate: [AuthGuard] },
-  { path: 'list-usuario', loadChildren: () => import('src/app/usuario/list-usuario/list-usuario.module').then(m => m.ListUsuarioModule), canActivate: [AuthGuard] }
+  { path: 'list-usuario', loadChildren: () => import('src/app/usuario/list-usuario/list-usuario.module').then(m => m.ListUsuarioModule), canActivate: [AuthGuard] },
+  { path: 'altera-email', loadChildren: () => import('src/app/altera-email/altera-email.module').then(m => m.AlteraEmailModule), canActivate: [AuthGuard] }
 ];
 
 @NgModule({

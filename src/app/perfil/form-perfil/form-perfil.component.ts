@@ -77,8 +77,8 @@ export class FormPerfilComponent implements OnInit {
       }
     }, err => {
       this.showMessageError = true;
-      this.msgs.push({ severity: 'error', detail: 'Não foi possível cadastrar o perfil.' });
       this.disabledButton = false;
+      this.msgs.push({ severity: 'error', detail: 'Não foi possível cadastrar o perfil.' });      
     });
   }
 

@@ -1,0 +1,40 @@
+<form [formGroup]="emailFormGroup" (ngSubmit)="alterarEmail()">
+    <p-panel>
+        <p-header>
+            <div style="text-align: center; font-weight: bold;">{{titlePage}}</div>
+        </p-header>
+        <div class="ui-g">
+            <div class="ui-g-6">
+                <label for="email">* E-mail</label>
+            </div>
+            <div class="ui-g-6"></div>
+        </div>
+        <div class="ui-g">
+            <div class="ui-g-6 ui-fluid">
+                <input id="email" name="email" type="email" pInputText formControlName="email" />
+            </div>
+            <div class="ui-g-6"></div>
+        </div>
+        <div class="ui-g">
+            <div class="ui-g-6">
+                <span style="color: red;"
+                    *ngIf="!emailFormGroup.controls['email'].valid && emailFormGroup.controls['email'].dirty"
+                    [innerHTML]="emailFormGroup.controls['email'].errors['required'] ? 'Campo obrigatório' 
+                        : emailFormGroup.controls['email'].errors['email'] ? 'E-mail inválido'
+                        : ''">
+                </span>
+            </div>
+            <div class="ui-g-6"></div>
+        </div>
+        <p-footer>
+            <div style="text-align: right;">
+                <button pButton type="submit" label="Atualizar"
+                    [disabled]="!emailFormGroup.valid || disabledButton"></button>
+            </div>
+        </p-footer>
+    </p-panel>
+</form>
+
+<p-toast></p-toast>
+
+<p-messages *ngIf="showMessageError" [(value)]="msgs"></p-messages>

@@ -50,8 +50,8 @@ export class MenuComponent implements OnInit {
 
   private addItensUsuario() {
     this.itemsUsuario = [
-      { label: 'Alterar e-mail', icon: 'pi pi-envelope', routerLink: '' },
-      { label: 'Alterar senha', icon: 'pi pi-lock', routerLink: '' },
+      { label: 'Alterar e-mail', icon: 'pi pi-envelope', routerLink: ['/altera-email'] },
+      { label: 'Alterar senha', icon: 'pi pi-lock', routerLink: ['/altera-senha'] },
       { separator: true },
       { label: 'Sair', icon: 'pi pi-times', routerLink: '' }
     ];
