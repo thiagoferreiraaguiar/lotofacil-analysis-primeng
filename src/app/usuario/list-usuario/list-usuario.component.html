@@ -22,11 +22,11 @@
             <input id="login" name="login" type="text" pInputText [(ngModel)]="login" />
         </div>
         <div class="ui-g-4 ui-fluid">
-            <p-dropdown [options]="listaPerfilUsuarioLTO" placeholder="Selecione" [(ngModel)]="perfilSelecionado"
-                optionLabel="descricao"></p-dropdown>
+            <p-dropdown [options]="perfilList" placeholder="Selecione" [(ngModel)]="idPerfil"></p-dropdown>
         </div>
         <div class="ui-g-1 ui-fluid">
-            <p-triStateCheckbox [(ngModel)]="ativo" label="{{labelStatus}}" (onChange)="onChangeStatus()"></p-triStateCheckbox>
+            <p-triStateCheckbox [(ngModel)]="ativo" label="{{labelStatus}}" (onChange)="onChangeStatus()">
+            </p-triStateCheckbox>
         </div>
     </div>
     <p-footer>

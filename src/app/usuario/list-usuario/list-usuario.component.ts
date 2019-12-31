@@ -6,6 +6,7 @@ import { PerfilService } from './../../perfil/perfil.service';
 import { UsuarioService } from './../usuario.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SelectItem } from 'primeng/api/selectitem';
 
 @Component({
   selector: 'app-list-usuario',
@@ -24,12 +25,12 @@ export class ListUsuarioComponent implements OnInit {
 
   nome: string;
   login: string;
-  perfilSelecionado: PerfilUsuarioLTO;
+  idPerfil: number;
   ativo: any;
   labelStatus: string;
 
   pageForm: string;
-  listaPerfilUsuarioLTO: PerfilUsuarioLTO[] = [];
+  perfilList: SelectItem[] = [];
   listaUsuarioLTO: UsuarioLTO[] = [];
 
   // paginacao
@@ -46,8 +47,13 @@ export class ListUsuarioComponent implements OnInit {
     this.util = new Util();
 
     //preenche combo perfil
+    let listaPerfilUsuarioLTO: PerfilUsuarioLTO[] = [];
+    this.perfilList.push({ label: "Selecione", value: 0 });
     this.perfilService.listarTodos().subscribe((response: ResponseEntity) => {
-      this.listaPerfilUsuarioLTO = response.data;
+      listaPerfilUsuarioLTO = response.data;
+      listaPerfilUsuarioLTO.forEach((perfilLTO, index) => {
+        this.perfilList.push({ label: perfilLTO.descricao, value: perfilLTO.idPerfilUsuario });
+      })
     });
 
     // listar todos usuarios
@@ -58,7 +64,7 @@ export class ListUsuarioComponent implements OnInit {
   }
 
   public pesquisarUsuario() {
-    this.usuarioService.pesquisarUsuario(this.nome, this.login, this.perfilSelecionado.idPerfilUsuario, this.ativo).subscribe((response: ResponseEntity) => {
+    this.usuarioService.pesquisarUsuario(this.nome, this.login, this.idPerfil, this.ativo).subscribe((response: ResponseEntity) => {
       this.listaUsuarioLTO = response.data;
       this.textPaginacao = this.util.showLabelPaginate(0, this.listaUsuarioLTO.length, this.qtdRows);
     });
