@@ -1,0 +1,63 @@
+<form [formGroup]="senhaFormGroup" (ngSubmit)="alterarSenha()">
+    <p-panel>
+        <p-header>
+            <div style="text-align: center; font-weight: bold;">{{titlePage}}</div>
+        </p-header>
+        <div class="ui-g">
+            <div class="ui-g-4">
+                <label for="email">* Senha</label>
+            </div>
+            <div class="ui-g-4">
+                <label for="email">* Nova Senha</label>
+            </div>
+            <div class="ui-g-4">
+                <label for="email">* Confirma Senha</label>
+            </div>
+        </div>
+        <div class="ui-g">
+            <div class="ui-g-4 ui-fluid">
+                <input id="senha" name="senha" type="password" pInputText formControlName="senha" />
+            </div>
+            <div class="ui-g-4 ui-fluid">
+                <input id="novaSenha" name="novaSenha" type="password" pInputText formControlName="novaSenha" />
+            </div>
+            <div class="ui-g-4 ui-fluid">
+                <input id="confirmaSenha" name="confirmaSenha" type="password" pInputText
+                    formControlName="confirmaSenha" />
+            </div>
+        </div>
+        <div class="ui-g">
+            <div class="ui-g-4">
+                <span style="color: red;"
+                    *ngIf="!senhaFormGroup.controls['senha'].valid && senhaFormGroup.controls['senha'].dirty"
+                    [innerHTML]="senhaFormGroup.controls['senha'].errors['required'] ? 'Campo obrigatório'                 
+                        : ''">
+                </span>
+            </div>
+            <div class="ui-g-4">
+                <span style="color: red;"
+                    *ngIf="!senhaFormGroup.controls['novaSenha'].valid && senhaFormGroup.controls['novaSenha'].dirty"
+                    [innerHTML]="senhaFormGroup.controls['novaSenha'].errors['required'] ? 'Campo obrigatório'                         
+                        : ''">
+                </span>
+            </div>
+            <div class="ui-g-4">
+                <span style="color: red;"
+                    *ngIf="!senhaFormGroup.controls['confirmaSenha'].valid && senhaFormGroup.controls['confirmaSenha'].dirty"
+                    [innerHTML]="senhaFormGroup.controls['confirmaSenha'].errors['required'] ? 'Campo obrigatório'                     
+                        : ''">
+                </span>
+            </div>
+        </div>
+        <p-footer>
+            <div style="text-align: right;">
+                <button pButton type="submit" label="Atualizar"
+                    [disabled]="!senhaFormGroup.valid || disabledButton"></button>
+            </div>
+        </p-footer>
+    </p-panel>
+</form>
+
+<p-toast></p-toast>
+
+<p-messages *ngIf="showMessageError" [(value)]="msgs"></p-messages>

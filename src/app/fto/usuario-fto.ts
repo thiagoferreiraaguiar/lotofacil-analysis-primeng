@@ -1,8 +1,8 @@
-import { PerfilUsuario } from './perfil-usuario';
+import { PerfilUsuarioFTO } from './perfil-usuario-fto';
 
-export class Usuario {
+export class UsuarioFTO {
     public idUsuario: number;
-    public perfilUsuario: PerfilUsuario;
+    public perfilUsuario: PerfilUsuarioFTO;
     public nome: string;
     public cpf: string;
     public login: string;

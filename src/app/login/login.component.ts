@@ -57,13 +57,13 @@ export class LoginComponent implements OnInit {
     this.showMsgErro = true;
     this.labelButton = "Logar";
     this.msgs.push({ severity: 'error', summary: 'Erro: ', detail: message });
-    this.usuarioLogado.usuario = null;
+    this.usuarioLogado.usuarioFTO = null;
     this.usuarioLogado.token = null;
     this.usuarioLogado.exibeMenu.emit(false);
   }
 
   public adicionarUsuarioSessao(currentUser: CurrentUser): void {
-    this.usuarioLogado.usuario = currentUser.usuario;
+    this.usuarioLogado.usuarioFTO = currentUser.usuarioFTO;
     this.usuarioLogado.token = currentUser.token;
     this.usuarioLogado.exibeMenu.emit(true);
   }

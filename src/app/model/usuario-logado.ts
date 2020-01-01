@@ -1,10 +1,10 @@
+import { UsuarioFTO } from './../fto/usuario-fto';
 import { EventEmitter, Injectable } from '@angular/core';
-import { Usuario } from './usuario';
 
 @Injectable()
 export class UsuarioLogado {
     public static instance: UsuarioLogado = null;
-    public usuario: Usuario;
+    public usuarioFTO: UsuarioFTO;
     public token: string;
     public exibeMenu = new EventEmitter<boolean>();
 
@@ -20,9 +20,9 @@ export class UsuarioLogado {
     }
 
     public isLogado(): boolean {
-        if (this.usuario == null) {
+        if (this.usuarioFTO == null) {
             return false;
         }
-        return this.usuario.login != '';
+        return this.usuarioFTO.login != '';
     }
 }

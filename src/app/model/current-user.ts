@@ -1,8 +1,8 @@
-import { Usuario } from './usuario';
+import { UsuarioFTO } from './../fto/usuario-fto';
 
 export class CurrentUser {
     public token: string;
-    public usuario: Usuario;
+    public usuarioFTO: UsuarioFTO;
 
     public constructor() {
     }

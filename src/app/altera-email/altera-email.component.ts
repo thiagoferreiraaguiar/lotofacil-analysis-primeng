@@ -31,7 +31,7 @@ export class AlteraEmailComponent implements OnInit {
     this.disabledButton = false;
     this.usuarioLogado = UsuarioLogado.getInstance();
     this.createForm();
-    this.popularCamposFormulario(this.usuarioLogado.usuario.email);
+    this.popularCamposFormulario(this.usuarioLogado.usuarioFTO.email);
   }
 
   private createForm() {
@@ -43,10 +43,10 @@ export class AlteraEmailComponent implements OnInit {
   public alterarEmail(): void {
     this.msgs = [];
     this.disabledButton = true;
-    this.alterarEmailService.alterarEmail(this.emailFormGroup.value.email, this.usuarioLogado.usuario.login).subscribe((response: ResponseEntity) => {
+    this.alterarEmailService.alterarEmail(this.emailFormGroup.value.email, this.usuarioLogado.usuarioFTO.login).subscribe((response: ResponseEntity) => {
       if (response.data != null) {
         this.showMessageError = false;
-        this.usuarioLogado.usuario.email = this.emailFormGroup.value.email;
+        this.usuarioLogado.usuarioFTO.email = this.emailFormGroup.value.email;
         this.messageService.add({ severity: 'success', detail: 'E-mail alterado com sucesso!' });
         this.disabledButton = false;
       }

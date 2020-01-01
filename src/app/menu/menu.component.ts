@@ -22,7 +22,7 @@ export class MenuComponent implements OnInit {
     this.usuarioLogado = UsuarioLogado.getInstance();
     this.usuarioLogado.exibeMenu.subscribe((show: boolean) => {
       if (show) {
-        this.loginUsuario = this.usuarioLogado.usuario.login;
+        this.loginUsuario = this.usuarioLogado.usuarioFTO.login;
       }
     });
   }
