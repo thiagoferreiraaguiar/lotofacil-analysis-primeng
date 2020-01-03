@@ -41,7 +41,7 @@ export class AlteraSenhaComponent implements OnInit {
     });
   }
 
-  public alterarEmail(): void {
+  public alterarSenha(): void {
     this.msgs = [];
     this.disabledButton = true;
     this.alterarSenhaService.alterarSenha(this.senhaFormGroup.value.senha, this.senhaFormGroup.value.novaSenha, this.senhaFormGroup.value.confirmaSenha, this.usuarioLogado.usuarioFTO.login).subscribe((response: ResponseEntity) => {
