@@ -36,6 +36,7 @@ export class AlteraEmailComponent implements OnInit {
 
   private createForm() {
     this.emailFormGroup = new FormGroup({
+      idUsuario: new FormControl(this.usuarioLogado.usuarioFTO.idUsuario),
       email: new FormControl('', [Validators.required, Validators.email])
     });
   }
@@ -43,7 +44,7 @@ export class AlteraEmailComponent implements OnInit {
   public alterarEmail(): void {
     this.msgs = [];
     this.disabledButton = true;
-    this.alterarEmailService.alterarEmail(this.emailFormGroup.value.email, this.usuarioLogado.usuarioFTO.login).subscribe((response: ResponseEntity) => {
+    this.alterarEmailService.alterarEmail(this.emailFormGroup.value).subscribe((response: ResponseEntity) => {
       if (response.data != null) {
         this.showMessageError = false;
         this.usuarioLogado.usuarioFTO.email = this.emailFormGroup.value.email;
@@ -59,6 +60,7 @@ export class AlteraEmailComponent implements OnInit {
 
   private popularCamposFormulario(novoEmail: string) {
     this.emailFormGroup.setValue({
+      idUsuario: this.usuarioLogado.usuarioFTO.idUsuario,
       email: novoEmail
     })
   }

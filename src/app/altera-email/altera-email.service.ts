@@ -1,4 +1,5 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { UsuarioFTO } from './../fto/usuario-fto';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -10,11 +11,7 @@ export class AlteraEmailService {
 
   constructor(private http: HttpClient) { }
 
-  public alterarEmail(email: string, login: string) {
-    const params = new HttpParams()
-      .set('email', email)
-      .set('login', login);
-
-    return this.http.get(this.url + '/api/usuario/atualizarEmailByLogin', { params });
+  public alterarEmail(usuarioFTO: UsuarioFTO) {
+    return this.http.post(this.url + '/api/usuario/atualizarEmail', usuarioFTO);
   }
 }
