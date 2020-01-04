@@ -1,3 +1,4 @@
+import { UsuarioFTO } from './../fto/usuario-fto';
 import { AlteraSenhaService } from './altera-senha.service';
 import { ResponseEntity } from './../model/response-entity';
 import { UsuarioLogado } from './../model/usuario-logado';
@@ -35,6 +36,7 @@ export class AlteraSenhaComponent implements OnInit {
 
   private createForm() {
     this.senhaFormGroup = new FormGroup({
+      idUsuario: new FormControl(this.usuarioLogado.usuarioFTO.idUsuario),
       senha: new FormControl('', [Validators.required]),
       novaSenha: new FormControl('', [Validators.required]),
       confirmaSenha: new FormControl('', [Validators.required])
@@ -44,7 +46,7 @@ export class AlteraSenhaComponent implements OnInit {
   public alterarSenha(): void {
     this.msgs = [];
     this.disabledButton = true;
-    this.alterarSenhaService.alterarSenha(this.senhaFormGroup.value.senha, this.senhaFormGroup.value.novaSenha, this.senhaFormGroup.value.confirmaSenha, this.usuarioLogado.usuarioFTO.login).subscribe((response: ResponseEntity) => {
+    this.alterarSenhaService.alterarSenha(this.senhaFormGroup.value).subscribe((response: ResponseEntity) => {
       if (this.senhaFormGroup.value.novaSenha != this.senhaFormGroup.value.confirmaSenha) {
         this.showMessageError = true;
         this.disabledButton = false;

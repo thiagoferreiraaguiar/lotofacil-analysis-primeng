@@ -1,3 +1,4 @@
+import { UsuarioFTO } from './../fto/usuario-fto';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -10,14 +11,8 @@ export class AlteraSenhaService {
 
   constructor(private http: HttpClient) { }
 
-  public alterarSenha(senha: string, novaSenha: string, confirmaSenha: string, login: string) {
-    const params = new HttpParams()
-      .set('senha', senha)
-      .set('novaSenha', novaSenha)
-      .set('confirmaSenha', confirmaSenha)
-      .set('login', login);
-
-    return this.http.get(this.url + '/api/usuario/atualizarSenhaByLogin', { params });
+  public alterarSenha(usuarioFTO: UsuarioFTO) {
+    return this.http.post(this.url + '/api/usuario/atualizarSenha', usuarioFTO);
   }
 
 }

@@ -7,6 +7,8 @@ export class UsuarioFTO {
     public cpf: string;
     public login: string;
     public senha: string;
+    public novaSenha: string;
+    public confirmaSenha: string;
     public email: string;
     public ativo: boolean;
 
