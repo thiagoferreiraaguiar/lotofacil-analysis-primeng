@@ -10,7 +10,6 @@ import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-
 import { FormPerfilRoutingModule } from './form-perfil-routing.module';
 
 

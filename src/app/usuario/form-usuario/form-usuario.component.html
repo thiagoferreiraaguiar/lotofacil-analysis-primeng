@@ -1,0 +1,107 @@
+<form [formGroup]="usuarioFormGroup" (ngSubmit)="cadastrarUsuario()">
+    <p-panel>
+        <p-header>
+            <div style="text-align: center; font-weight: bold;">{{titlePage}}</div>
+        </p-header>
+        <div class="ui-g">
+            <input type="hidden" id="idUsuario" name="idUsuario" pInputText formControlName="idUsuario">
+            <div class="ui-g-4">
+                <label for="nome">* Nome</label>
+            </div>
+            <div class="ui-g-4">
+                <label for="perfil">* CPF</label>
+            </div>
+            <div class="ui-g-4">
+                <label for="perfil">* Login</label>
+            </div>
+        </div>
+        <div class="ui-g">
+            <div class="ui-g-4 ui-fluid">
+                <input id="nome" name="nome" type="text" pInputText formControlName="nome" />
+            </div>
+            <div class="ui-g-4 ui-fluid">
+                <p-inputMask mask="999.999.999-99" id="cpf'" name="cpf" formControlName="cpf"></p-inputMask>
+            </div>
+            <div class="ui-g-4 ui-fluid">
+                <input id="login" name="login" type="text" pInputText formControlName="login" />
+            </div>
+        </div>
+        <div class="ui-g">
+            <div class="ui-g-4">
+                <span style="color: red;"
+                    *ngIf="!usuarioFormGroup.controls['nome'].valid && usuarioFormGroup.controls['nome'].dirty"
+                    [innerHTML]="usuarioFormGroup.controls['nome'].errors['required'] ? 'Campo obrigatório' 
+                        : ''">
+                </span>
+            </div>
+            <div class="ui-g-4">
+                <span style="color: red;"
+                    *ngIf="!usuarioFormGroup.controls['cpf'].valid && usuarioFormGroup.controls['cpf'].dirty"
+                    [innerHTML]="usuarioFormGroup.controls['cpf'].errors['required'] ? 'Campo obrigatório' 
+                        : ''">
+                </span>
+            </div>
+            <div class="ui-g-4">
+                <span style="color: red;"
+                    *ngIf="!usuarioFormGroup.controls['login'].valid && usuarioFormGroup.controls['login'].dirty"
+                    [innerHTML]="usuarioFormGroup.controls['login'].errors['required'] ? 'Campo obrigatório' 
+                        : ''">
+                </span>
+            </div>
+        </div>
+        <div class="ui-g">
+            <div class="ui-g-4">
+                <label for="perfil">* Perfil</label>
+            </div>
+            <div class="ui-g-4">
+                <label for="email">* E-mail</label>
+            </div>
+            <div class="ui-g-4">
+                <label for="email">Status</label>
+            </div>
+        </div>
+        <div class="ui-g">
+            <div class="ui-g-4 ui-fluid">
+                <p-dropdown [options]="perfilList" placeholder="Selecione" formControlName="idPerfil"></p-dropdown>
+            </div>
+            <div class="ui-g-4 ui-fluid">
+                <input id="email'" name="email" type="email" pInputText formControlName="email" />
+            </div>
+            <div class="ui-g-4 ui-fluid">
+                <p-checkbox binary="true" formControlName="ativo" label="{{labelStatus}}" (onChange)="onChangeStatus()">
+                </p-checkbox>
+            </div>
+        </div>
+        <div class="ui-g">
+            <div class="ui-g-4">
+                <span style="color: red;"
+                    *ngIf="!usuarioFormGroup.controls['idPerfil'].valid && usuarioFormGroup.controls['idPerfil'].dirty"
+                    [innerHTML]="usuarioFormGroup.controls['idPerfil'].errors['required'] ? 'Campo obrigatório' 
+                        : ''">
+                </span>
+            </div>
+            <div class="ui-g-4">
+                <span style="color: red;"
+                    *ngIf="!usuarioFormGroup.controls['email'].valid && usuarioFormGroup.controls['email'].dirty"
+                    [innerHTML]="usuarioFormGroup.controls['email'].errors['required'] ? 'Campo obrigatório' 
+                        : ''">
+                </span>
+            </div>
+            <div class="ui-g-4"></div>
+        </div>
+        <p-footer>
+            <div style="text-align: right;">
+                <button pButton type="button" label="Voltar" [routerLink]="pageList"
+                    style="margin-right: .25em"></button>
+                <button pButton type="button" label="Novo" (click)="novoUsuario()" *ngIf="isAtualizacao;"
+                    style="margin-right: .25em"></button>
+                <button pButton type="button" label="Excluir" *ngIf="isAtualizacao" style="margin-right: .25em"
+                    [disabled]="disabledButton" (click)="excluirUsuario(idUsuario)"></button>
+                <button pButton type="submit" label="Atualizar" [disabled]="!usuarioFormGroup.valid || disabledButton"
+                    *ngIf="isAtualizacao"></button>
+                <button pButton type="submit" label="Cadastrar" [disabled]="!usuarioFormGroup.valid || disabledButton"
+                    *ngIf="!isAtualizacao"></button>
+            </div>
+        </p-footer>
+    </p-panel>
+</form>

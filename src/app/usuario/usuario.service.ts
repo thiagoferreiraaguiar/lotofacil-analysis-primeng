@@ -1,3 +1,4 @@
+import { UsuarioFTO } from './../fto/usuario-fto';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -23,4 +24,17 @@ export class UsuarioService {
 
     return this.http.get(this.url + '/api/usuario/pesquisarUsuario', { params });
   }
+
+  public getUsuario(idUsuario: number) {
+    return this.http.get(this.url + "/api/usuario/" + idUsuario);
+  }
+
+  public cadastrarUsuario(usuarioFTO: UsuarioFTO) {
+    return this.http.post(this.url + "/api/usuario", usuarioFTO);
+  }
+
+  public excluirUsuario(idUsuario: number) {
+    return this.http.delete(this.url + "/api/usuario/" + idUsuario);
+  }
+  
 }

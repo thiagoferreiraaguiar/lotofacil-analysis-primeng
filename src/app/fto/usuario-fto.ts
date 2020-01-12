@@ -2,7 +2,7 @@ import { PerfilUsuarioFTO } from './perfil-usuario-fto';
 
 export class UsuarioFTO {
     public idUsuario: number;
-    public perfilUsuario: PerfilUsuarioFTO;
+    public perfilUsuarioFTO: PerfilUsuarioFTO;
     public nome: string;
     public cpf: string;
     public login: string;
